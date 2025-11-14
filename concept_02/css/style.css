@@ -1,0 +1,62 @@
+/* General Styles & Light Theme */
+body {
+    padding-top: 56px; /* Adjust for fixed navbar */
+    background-color: #f8f9fa;
+    color: #212529;
+    transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+.navbar {
+    transition: background-color 0.4s ease;
+}
+
+.hero-section {
+    height: 60vh;
+    background-color: #e9ecef;
+    transition: background-color 0.4s ease;
+}
+
+.product-card {
+    border: none;
+    background-color: #ffffff;
+    transition: background-color 0.4s ease, transform 0.2s ease-in-out;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Dark Theme */
+body.dark-theme {
+    background-color: #121212;
+    color: #f8f9fa;
+}
+
+body.dark-theme .navbar {
+    background-color: #000 !important;
+    border-bottom: 1px solid #333;
+}
+
+body.dark-theme .navbar-brand,
+body.dark-theme .nav-link {
+    color: #f8f9fa !important;
+}
+
+body.dark-theme .hero-section {
+    background-color: #212529;
+}
+
+body.dark-theme .product-card {
+    background-color: #1e1e1e;
+}
+
+body.dark-theme .product-card .card-title,
+body.dark-theme .product-card .card-text {
+    color: #f8f9fa;
+}
+
+/* The "Light" in the dark */
+body.dark-theme .product-card img {
+    filter: brightness(1.1) saturate(1.2);
+    box-shadow: 0 0 25px 5px rgba(255, 255, 255, 0.1);
+}
