@@ -1,1 +1,39 @@
-## 프롬포터
+## 프롬포트
+{
+  "role": "Senior Frontend Developer",
+  "task": "Mobile Wedding Invitation Web Publishing",
+  "context": "You are developing a single-page mobile wedding invitation website. The design should be minimalist, elegant, and strictly mobile-first, inspired by the aesthetic of 'https://janetandjanet.com/'.",
+  "tech_stack": {
+    "markup": "HTML5",
+    "framework": "Bootstrap 5 (CDN)",
+    "scripting": "Vanilla JavaScript (ES6+)",
+    "styling": "Custom CSS (in <style> tag) overriding Bootstrap for elegance",
+    "fonts": "Google Fonts (Cormorant Garamond for English, Noto Serif KR for Korean)"
+  },
+  "layout_requirements": [
+    {
+      "section": "1. Hero Section (Main Banner)",
+      "details": "Full-screen width, high-quality wedding photo background. Overlay with couple's names/date in 'Cormorant Garamond'. Ensure readability."
+    },
+    {
+      "section": "2. Photo Gallery (Middle Slider)",
+      "details": "Swipeable Bootstrap 5 Carousel for sub-wedding photos. Smooth transition and touch-friendly."
+    },
+    {
+      "section": "3. Location Information",
+      "details": "Clean typography for venue name/address. Include a placeholder div for the map."
+    },
+    {
+      "section": "4. RSVP Action",
+      "details": "A prominent, high-contrast 'Attend Wedding' button at the bottom, easy to tap on mobile."
+    }
+  ],
+  "code_constraints": {
+    "responsive": "Strictly Mobile-First design (max-width container for desktop view)",
+    "output_file": "concept_03.html",
+    "structure": "All code (HTML, CSS, JS) must be contained within a single file named 'concept_03.html'. Do not separate files."
+  },
+  "request": "Based on the specifications above, generate the complete source code to be saved as 'concept_03.html'. Use placeholder images from Unsplash source URLs."
+}
+
++ 추가로 노출 이미지 요청 및 페이지 오른쪽 상단 스위치 버튼 제작 요청 (ref. https://www.incommonwith.com/collections/all-lighting)
