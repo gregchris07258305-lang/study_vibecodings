@@ -19,6 +19,38 @@
             --font-sans: 'Open Sans', sans-serif;
         }
 
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #fff; /* White background for preloader */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+
+        #preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--primary-color);
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
         body {
             font-family: var(--font-sans);
             color: var(--text-dark);
@@ -34,6 +66,91 @@
             background-color: #fff; /* White background for content */
             box-shadow: 0 0 15px rgba(0,0,0,0.1);
             min-height: 100vh; /* Ensure it takes full height on desktop */
+            position: relative; /* For positioning the toggle switch */
+        }
+
+        /* Dark Mode Toggle Switch */
+        .dark-mode-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .dark-mode-toggle input[type="checkbox"] {
+            height: 0;
+            width: 0;
+            visibility: hidden;
+        }
+
+        .dark-mode-toggle label {
+            cursor: pointer;
+            text-indent: -9999px;
+            width: 50px;
+            height: 25px;
+            background: #ccc;
+            display: block;
+            border-radius: 100px;
+            position: relative;
+        }
+
+        .dark-mode-toggle label:after {
+            content: '';
+            position: absolute;
+            top: 2.5px;
+            left: 2.5px;
+            width: 20px;
+            height: 20px;
+            background: #fff;
+            border-radius: 90px;
+            transition: 0.3s;
+        }
+
+        .dark-mode-toggle input:checked + label {
+            background: var(--primary-color);
+        }
+
+        .dark-mode-toggle input:checked + label:after {
+            left: calc(100% - 2.5px);
+            transform: translateX(-100%);
+        }
+
+        /* Dark Mode Styles */
+        body.dark-mode {
+            background-color: #222;
+            color: #eee;
+        }
+
+        body.dark-mode .container-max-width {
+            background-color: #333;
+            box-shadow: 0 0 15px rgba(255,255,255,0.1);
+        }
+
+        body.dark-mode .section-title {
+            color: var(--secondary-color);
+        }
+
+        body.dark-mode .bg-light {
+            background-color: #444 !important;
+            color: #eee;
+        }
+
+        body.dark-mode .map-placeholder {
+            background-color: #555;
+            color: #ccc;
+        }
+
+        body.dark-mode .footer {
+            background-color: #333;
+            color: #aaa;
+        }
+
+        body.dark-mode p {
+            color: #ccc; /* Lighter grey for general paragraphs */
+        }
+
+        body.dark-mode a {
+            color: var(--secondary-color); /* Use secondary color for links in dark mode */
         }
 
         /* Hero Section */
@@ -41,8 +158,10 @@
             position: relative;
             width: 100%;
             height: 100vh; /* Full viewport height */
-            /* Reference Image: Elegant, soft-focus wedding couple or minimalist floral background */
-            background: url('./images/image 1.jpg') no-repeat center center/cover;
+            background-color: #f0f0f0; /* Placeholder background color */
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -78,6 +197,27 @@
             font-size: 1.5rem;
             font-weight: 400;
             letter-spacing: 2px;
+        }
+
+        #countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 30px;
+            font-family: var(--font-serif-en);
+            color: var(--text-light);
+        }
+
+        .countdown-item {
+            text-align: center;
+            font-size: 1rem;
+            line-height: 1.2;
+        }
+
+        .countdown-item span {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 700;
         }
 
         /* General Section Styling */
@@ -192,17 +332,41 @@
     </style>
 </head>
 <body>
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
 
     <div class="container-max-width">
+        <div class="dark-mode-toggle">
+            <input type="checkbox" id="darkModeToggle" aria-label="Toggle dark mode">
+            <label for="darkModeToggle" class="slider"></label>
+        </div>
         <!-- 1. Hero Section (Main Banner) -->
-        <header class="hero-section" role="banner" aria-label="Wedding Invitation Hero Section">
+        <header id="heroSection" class="hero-section" role="banner" aria-label="Wedding Invitation Hero Section">
             <div class="hero-overlay">
                 <h1 class="hero-title">Janet & John</h1>
                 <p class="hero-date">December 25, 2024</p>
+                <div id="countdown" class="mt-3">
+                    <span class="countdown-item"><span id="days"></span><br>Days</span>
+                    <span class="countdown-item"><span id="hours"></span><br>Hours</span>
+                    <span class="countdown-item"><span id="minutes"></span><br>Minutes</span>
+                    <span class="countdown-item"><span id="seconds"></span><br>Seconds</span>
+                </div>
             </div>
         </header>
 
         <main>
+            <!-- Our Story Section -->
+            <section id="our-story" class="section-padding" aria-labelledby="our-story-title">
+                <h2 id="our-story-title" class="section-title">Our Story</h2>
+                <div class="container text-center">
+                    <p class="lead mb-4">From our first meeting to this special day, every moment has been a cherished memory. We invite you to share in our journey.</p>
+                    <p>It all started on a beautiful spring day in 2019 when fate brought us together at a local coffee shop. What began as a casual conversation quickly blossomed into a deep connection, filled with laughter, shared dreams, and an undeniable bond.</p>
+                    <p>Through countless adventures, quiet evenings, and unwavering support for each other, our love grew stronger. We've built a life filled with joy, understanding, and endless affection. Now, we're thrilled to embark on our greatest adventure yet: marriage.</p>
+                    <p class="mt-4">Thank you for being a part of our story.</p>
+                </div>
+            </section>
+
             <!-- 2. Photo Gallery (Middle Slider) -->
             <section id="gallery" class="section-padding" aria-labelledby="gallery-title">
                 <h2 id="gallery-title" class="section-title">Our Moments</h2>
@@ -215,15 +379,15 @@
                     <div class="carousel-inner">
                         <div class="carousel-item active">
                             <!-- Reference Image: Candid, joyful wedding moment -->
-                            <img src="./images/image 2.jpg" class="d-block w-100" alt="Wedding photo 1">
+                            <img src="./images/image_N2.jpg" data-light-src="./images/image_N2.jpg" data-dark-src="./images/image_D2.jpg" class="d-block w-100" alt="Wedding photo 1">
                         </div>
                         <div class="carousel-item">
                             <!-- Reference Image: Artistic, elegant wedding detail (e.g., rings, flowers) -->
-                            <img src="./images/image 3.jpg" class="d-block w-100" alt="Wedding photo 2">
+                            <img src="./images/image_N3.jpg" data-light-src="./images/image_N3.jpg" data-dark-src="./images/image_D3.jpg" class="d-block w-100" alt="Wedding photo 2">
                         </div>
                         <div class="carousel-item">
                             <!-- Reference Image: Romantic, natural light wedding portrait -->
-                            <img src="./images/image 4.jpg" class="d-block w-100" alt="Wedding photo 3">
+                            <img src="./images/image_N4.jpg" data-light-src="./images/image_N4.jpg" data-dark-src="./images/image_D4.jpg" class="d-block w-100" alt="Wedding photo 3">
                         </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#weddingCarousel" data-bs-slide="prev">
@@ -257,6 +421,17 @@
                 <a href="#" class="btn" role="button" aria-label="Attend Wedding RSVP button">Attend Wedding</a>
                 <!-- Reference: A simple, elegant button design with clear contrast. -->
             </section>
+            <!-- Guestbook/Wishes Section -->
+            <section id="guestbook" class="section-padding bg-light" aria-labelledby="guestbook-title">
+                <h2 id="guestbook-title" class="section-title">Leave Your Wishes</h2>
+                <div class="container text-center">
+                    <p class="lead mb-4">We would love to hear from you! Please leave your well wishes for the happy couple.</p>
+                    <div class="p-4 border rounded" style="min-height: 150px; background-color: #f0f0f0; color: #888;">
+                        <p>Guestbook / Wishes Form Placeholder</p>
+                        <p><small> (This section would typically integrate with a backend service to submit and display messages.)</small></p>
+                    </div>
+                </div>
+            </section>
         </main>
 
         <footer class="footer">
@@ -274,6 +449,97 @@
                 interval: 5000, // Change slide every 5 seconds
                 touch: true // Enable touch swipe
             });
+
+            // Dark Mode Toggle
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            // Check for saved dark mode preference and apply immediately
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                document.body.classList.add('dark-mode');
+                darkModeToggle.checked = true;
+            }
+
+            // Function to update images based on dark mode
+            function updateImagesForMode() {
+                const isDarkMode = document.body.classList.contains('dark-mode');
+                const heroSection = document.getElementById('heroSection');
+                const carouselImages = document.querySelectorAll('#weddingCarousel img');
+
+                console.log('updateImagesForMode called. Dark mode enabled:', isDarkMode); // Debugging
+
+                // Update Hero Section background
+                if (heroSection) {
+                    const imageUrl = `./images/${isDarkMode ? 'image_D1.jpg' : 'image_N1.jpg'}`;
+                    heroSection.style.backgroundImage = `url(${imageUrl})`;
+                    console.log('Hero Section background set to:', imageUrl); // Debugging
+                } else {
+                    console.error('Hero Section element not found!'); // Debugging
+                }
+
+                // Update Carousel Images
+                carouselImages.forEach((img, index) => {
+                    const newSrc = isDarkMode ? img.dataset.darkSrc : img.dataset.lightSrc;
+                    if (newSrc) {
+                        img.src = newSrc;
+                        console.log(`Carousel image ${index + 1} src set to:`, newSrc); // Debugging
+                        img.onerror = () => console.error(`Failed to load image: ${newSrc}`); // Error handling
+                    } else {
+                        console.warn(`Carousel image ${index + 1} has no data-light-src or data-dark-src!`); // Debugging
+                    }
+                });
+            }
+
+            // Initial image update on DOMContentLoaded
+            updateImagesForMode();
+
+            darkModeToggle.addEventListener('change', function() {
+                if (this.checked) {
+                    document.body.classList.add('dark-mode');
+                    localStorage.setItem('darkMode', 'enabled');
+                } else {
+                    document.body.classList.remove('dark-mode');
+                    localStorage.setItem('darkMode', 'disabled');
+                }
+                updateImagesForMode(); // Update images when toggle changes
+            });
+
+            // Hide preloader once content is loaded
+            window.addEventListener('load', function() {
+                const preloader = document.getElementById('preloader');
+                if (preloader) {
+                    preloader.classList.add('hidden');
+                    // Optional: Remove preloader from DOM after transition
+                    preloader.addEventListener('transitionend', function() {
+                        preloader.remove();
+                    });
+                }
+            });
+
+            // Countdown Timer
+            const weddingDate = new Date("Dec 25, 2024 00:00:00").getTime();
+
+            const x = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = weddingDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                if (document.getElementById("days")) {
+                    document.getElementById("days").innerHTML = days;
+                    document.getElementById("hours").innerHTML = hours;
+                    document.getElementById("minutes").innerHTML = minutes;
+                    document.getElementById("seconds").innerHTML = seconds;
+                }
+
+                if (distance < 0) {
+                    clearInterval(x);
+                    if (document.getElementById("countdown")) {
+                        document.getElementById("countdown").innerHTML = "WE ARE MARRIED!";
+                    }
+                }
+            }, 1000);
         });
     </script>
 </body>
