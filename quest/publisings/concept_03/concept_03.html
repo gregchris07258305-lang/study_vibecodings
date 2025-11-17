@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Janet & John - Wedding Invitation</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Noto+Serif+KR:wght@400;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #8B4513; /* SaddleBrown */
+            --secondary-color: #F5DEB3; /* Wheat */
+            --text-dark: #333;
+            --text-light: #fff;
+            --font-serif-en: 'Cormorant Garamond', serif;
+            --font-serif-kr: 'Noto Serif KR', serif;
+            --font-sans: 'Open Sans', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            background-color: #f8f8f8; /* Light background for the whole page */
+        }
+
+        /* Max-width container for desktop view */
+        .container-max-width {
+            max-width: 500px; /* Typical mobile width */
+            margin: 0 auto;
+            background-color: #fff; /* White background for content */
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            min-height: 100vh; /* Ensure it takes full height on desktop */
+        }
+
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            width: 100%;
+            height: 100vh; /* Full viewport height */
+            /* Reference Image: Elegant, soft-focus wedding couple or minimalist floral background */
+            background: url('./images/image 1.jpg') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--text-light);
+            overflow: hidden;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4); /* Dark overlay for text readability */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .hero-title {
+            font-family: var(--font-serif-en);
+            font-size: 3.5rem; /* Larger for mobile */
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
+
+        .hero-date {
+            font-family: var(--font-serif-en);
+            font-size: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+
+        /* General Section Styling */
+        .section-padding {
+            padding: 60px 20px;
+        }
+
+        .section-title {
+            font-family: var(--font-serif-en);
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        /* Photo Gallery */
+        #weddingCarousel .carousel-item img {
+            width: 100%;
+            height: 300px; /* Fixed height for mobile gallery */
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        #weddingCarousel .carousel-indicators [data-bs-target] {
+            background-color: var(--primary-color);
+        }
+
+        #weddingCarousel .carousel-control-prev-icon,
+        #weddingCarousel .carousel-control-next-icon {
+            filter: invert(1); /* Make arrows visible on dark images */
+        }
+
+        /* Location Information */
+        .location-info {
+            text-align: center;
+        }
+
+        .location-info p {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .location-info a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 250px;
+            background-color: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 20px;
+            border-radius: 8px;
+            color: #666;
+            font-family: var(--font-sans);
+            font-size: 1rem;
+            text-align: center;
+            padding: 10px;
+        }
+
+        /* RSVP Action */
+        .rsvp-section {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .rsvp-section .btn {
+            background-color: var(--secondary-color);
+            color: var(--primary-color);
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 50px;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .rsvp-section .btn:hover {
+            background-color: #E0C690; /* Slightly darker wheat on hover */
+            color: var(--primary-color);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            font-size: 0.9rem;
+            color: #777;
+            background-color: #f8f8f8;
+        }
+
+        /* Responsive adjustments for larger screens (though mobile-first) */
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 5rem;
+            }
+            .hero-date {
+                font-size: 2rem;
+            }
+            #weddingCarousel .carousel-item img {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container-max-width">
+        <!-- 1. Hero Section (Main Banner) -->
+        <header class="hero-section" role="banner" aria-label="Wedding Invitation Hero Section">
+            <div class="hero-overlay">
+                <h1 class="hero-title">Janet & John</h1>
+                <p class="hero-date">December 25, 2024</p>
+            </div>
+        </header>
+
+        <main>
+            <!-- 2. Photo Gallery (Middle Slider) -->
+            <section id="gallery" class="section-padding" aria-labelledby="gallery-title">
+                <h2 id="gallery-title" class="section-title">Our Moments</h2>
+                <div id="weddingCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#weddingCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#weddingCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#weddingCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <!-- Reference Image: Candid, joyful wedding moment -->
+                            <img src="./images/image 2.jpg" class="d-block w-100" alt="Wedding photo 1">
+                        </div>
+                        <div class="carousel-item">
+                            <!-- Reference Image: Artistic, elegant wedding detail (e.g., rings, flowers) -->
+                            <img src="./images/image 3.jpg" class="d-block w-100" alt="Wedding photo 2">
+                        </div>
+                        <div class="carousel-item">
+                            <!-- Reference Image: Romantic, natural light wedding portrait -->
+                            <img src="./images/image 4.jpg" class="d-block w-100" alt="Wedding photo 3">
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#weddingCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#weddingCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </section>
+
+            <!-- 3. Location Information -->
+            <section id="location" class="section-padding bg-light" aria-labelledby="location-title">
+                <h2 id="location-title" class="section-title">Our Venue</h2>
+                <div class="container location-info">
+                    <p><strong>The Grand Ballroom</strong></p>
+                    <p>123 Wedding Avenue, Celebration City, CA 90210</p>
+                    <div class="map-placeholder" aria-label="Placeholder for Google Maps">
+                        <p>Map Placeholder</p>
+                        <p>Link to map: <a href="https://maps.app.goo.gl/your-google-maps-link" target="_blank" rel="noopener noreferrer">View on Google Maps</a></p>
+                        <!-- Reference: A clean, minimalist map style (e.g., Google Maps 'Light' or 'Silver' theme) would fit the aesthetic. -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4. RSVP Action -->
+            <section id="rsvp" class="rsvp-section" aria-labelledby="rsvp-title">
+                <h2 id="rsvp-title" class="section-title text-light">Will You Join Us?</h2>
+                <a href="#" class="btn" role="button" aria-label="Attend Wedding RSVP button">Attend Wedding</a>
+                <!-- Reference: A simple, elegant button design with clear contrast. -->
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>&copy; 2024 Janet & John. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Bootstrap Carousel
+            var myCarousel = document.querySelector('#weddingCarousel');
+            var carousel = new bootstrap.Carousel(myCarousel, {
+                interval: 5000, // Change slide every 5 seconds
+                touch: true // Enable touch swipe
+            });
+        });
+    </script>
+</body>
+</html>
