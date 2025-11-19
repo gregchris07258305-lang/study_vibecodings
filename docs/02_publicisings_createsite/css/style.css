@@ -1,0 +1,57 @@
+body {
+    background-color: #fdfcfb; /* Off-white Wall */
+    color: #333;
+    font-family: 'Helvetica Neue', sans-serif;
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
+    color: #5d4037; /* Deep Wood */
+}
+
+.card {
+    border: 1px solid #eee;
+    transition: transform .2s ease-in-out, box-shadow .2s ease-in-out;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.card-title {
+    color: #5d4037; /* Deep Wood */
+    font-weight: bold;
+}
+
+.card-text {
+    font-size: 0.9rem;
+}
+
+.badge {
+    background-color: #5d4037 !important; /* Deep Wood */
+}
+
+.modal-content {
+    background-color: #fdfcfb;
+    border: 2px solid #5d4037;
+}
+
+.modal-header, .modal-footer {
+    border-color: #eee;
+}
+
+.btn-danger {
+    background-color: #c62828;
+    border: none;
+}
+
+.btn-success {
+    background-color: #2e7d32;
+    border: none;
+}
+
+.btn-secondary {
+    background-color: #616161;
+    border: none;
+}
